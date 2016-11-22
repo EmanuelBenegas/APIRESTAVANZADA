@@ -3,6 +3,7 @@ package Apirest.persistence;
 import Apirest.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by lcc on 22/11/2016.
  */
-public class UsuarioDAO extends GenericDao {
+public class UsuarioDAO extends GenericDao<Usuario> {
 
 
     public UsuarioDAO(SessionFactory sessionFactory){
@@ -21,22 +22,28 @@ public class UsuarioDAO extends GenericDao {
     }
 
     @Override
-    List getAll() {
+    public List<Usuario> getAll() {
+
         return null;
     }
 
     @Override
-    Object getById(int id) {
+    public Usuario getById(int id) {
+
         return null;
     }
 
     @Override
-    void save(Object value) {
-
+    public void save(Usuario value) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+        session.save(value);
+        t.commit();
+        session.close();
     }
 
     @Override
-    void update(Object value) {
+    void update(Usuario value) {
 
     }
 

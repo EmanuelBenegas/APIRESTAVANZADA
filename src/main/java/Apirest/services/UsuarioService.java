@@ -1,5 +1,6 @@
 package Apirest.services;
 
+import Apirest.entities.Usuario;
 import Apirest.persistence.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,14 @@ public class UsuarioService {
     @Autowired
     public UsuarioService(UsuarioDAO userdao){
         this.userdao=userdao;
+    }
+
+    public void nuevoUser(Usuario user){
+        try{
+            userdao.save(user);
+        }
+        catch (Exception e){
+
+        }
     }
 }
