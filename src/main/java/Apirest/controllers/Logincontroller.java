@@ -15,6 +15,11 @@ import javax.print.attribute.standard.Media;
 /**
  * Created by lcc on 23/11/2016.
  */
+@RestController
+@RequestMapping(
+        value = "/",
+        produces = MediaType.APPLICATION_JSON_VALUE
+)
 public class Logincontroller {
 
     @Autowired
@@ -26,12 +31,13 @@ public class Logincontroller {
     @RequestMapping(value = "/iniciosesion", method = RequestMethod.POST)
     public
     @ResponseBody
-    ResponseEntity<LoginResponseWrapper> getUserforLogin(@RequestParam("user")String email,@RequestParam("password")String password){
+    ResponseEntity<LoginResponseWrapper> getUserforLogin(@RequestParam("email")String email,@RequestParam("password")String password){
         Usuario user = userservice.getUserforLogin(email,password);
         if(null != user){
             String sessionid = sessionData.addSession(user);
+            return new ResponseEntity<LoginResponseWrapper>(new LoginResponseWrapper(sessionid),HttpStatus.OK);
         }
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
 
     }
 
@@ -46,7 +52,7 @@ public class Logincontroller {
                                        @RequestParam("email")String email, @RequestParam("password")String password){
         try{
             userservice.Usernew(nombre,apellido,direccion,telefono,ciudad,provincia,pais,email,password);
-            return  new ResponseEntity(HttpStatus.CREATED);
+            return new ResponseEntity(HttpStatus.CREATED);
         }
         catch (Exception e){
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
