@@ -1,0 +1,16 @@
+Apirest\Application.class
+Apirest\services\MensajeService.class
+Apirest\util\AuthenticationData.class
+Apirest\Configuracion.class
+Apirest\persistence\GenericDao.class
+Apirest\entities\Usuario.class
+Apirest\AuthFilter$HeaderMapRequestWrapper.class
+Apirest\util\SessionData.class
+Apirest\controllers\Helloworldcontroller.class
+Apirest\entities\Mensaje.class
+Apirest\util\HibernateUtil.class
+Apirest\services\UsuarioService.class
+Apirest\AuthFilter.class
+Apirest\persistence\MensajeDAO.class
+Apirest\persistence\UsuarioDAO.class
+Apirest\controllers\Usuariocontroller.class

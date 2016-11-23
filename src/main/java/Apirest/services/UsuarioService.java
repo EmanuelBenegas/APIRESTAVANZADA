@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
     UsuarioDAO userdao;
+
     @Autowired
     public UsuarioService(UsuarioDAO userdao){
+
         this.userdao=userdao;
     }
 

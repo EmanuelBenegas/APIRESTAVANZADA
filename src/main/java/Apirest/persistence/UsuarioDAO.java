@@ -4,6 +4,7 @@ import Apirest.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by lcc on 22/11/2016.
  */
+@Service
 public class UsuarioDAO extends GenericDao<Usuario> {
 
 
@@ -23,14 +25,18 @@ public class UsuarioDAO extends GenericDao<Usuario> {
 
     @Override
     public List<Usuario> getAll() {
-
-        return null;
+        Session session = this.sessionFactory.openSession();
+        List<Usuario> usuarios = session.createQuery("FROM Usuario").list();
+        session.close();
+        return usuarios;
     }
 
     @Override
     public Usuario getById(int id) {
-
-        return null;
+        Session session = this.sessionFactory.openSession();
+        Usuario user = (Usuario) session.get(Usuario.class, id);
+        session.close();
+        return user;
     }
 
     @Override

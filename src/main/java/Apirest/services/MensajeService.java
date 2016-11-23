@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MensajeService {
-    @Autowired
     MensajeDAO mensdao;
 
+    @Autowired
     public  MensajeService(MensajeDAO mens){
         this.mensdao=mens;
     }

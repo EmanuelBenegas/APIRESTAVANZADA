@@ -9,7 +9,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/apirest?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
+    <property name="hbm2ddl.auto">create-drop</property>
     <mapping class="Apirest.entities.Usuario"/>
   </session-factory>
 </hibernate-configuration>

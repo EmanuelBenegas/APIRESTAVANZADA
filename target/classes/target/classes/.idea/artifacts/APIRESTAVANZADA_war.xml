@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="APIRESTAVANZADA:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="API.war">
-      <element id="artifact" artifact-name="APIRESTAVANZADA:war exploded" />
-    </root>
-  </artifact>
-</component>

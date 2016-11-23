@@ -17,7 +17,7 @@ public class Configuracion {
     public FilterRegistrationBean myFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(authFilter);
-        registration.addUrlPatterns("/APIREST/*");
+        registration.addUrlPatterns("/api/*");
         return registration;
     }
 }
