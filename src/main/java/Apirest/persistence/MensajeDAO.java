@@ -4,6 +4,7 @@ import Apirest.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by lcc on 22/11/2016.
  */
-@Service
+@Repository
 public class MensajeDAO extends GenericDao<Mensaje>{
 
 

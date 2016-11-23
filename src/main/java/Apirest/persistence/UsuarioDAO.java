@@ -4,6 +4,7 @@ import Apirest.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by lcc on 22/11/2016.
  */
-@Service
+@Repository
 public class UsuarioDAO extends GenericDao<Usuario> {
 
 
@@ -55,7 +56,7 @@ public class UsuarioDAO extends GenericDao<Usuario> {
 
     public Usuario getUsuario(String email, String password){
         Session session = this.sessionFactory.openSession();
-        List<Usuario> list = session.createQuery("FROM Usuarios where email = :u and password = :p").setParameter("u",email).setParameter("p",password).list();
+        List<Usuario> list = session.createQuery("FROM Usuario where email = :u and password = :p").setParameter("u",email).setParameter("p",password).list();
         session.close();
         if (list.size() == 1) {
             return list.get(0);

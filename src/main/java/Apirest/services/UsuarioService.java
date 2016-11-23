@@ -19,12 +19,31 @@ public class UsuarioService {
         this.userdao=userdao;
     }
 
-    public void nuevoUser(Usuario user){
+    public void Usernew(String nombre,
+                          String apellido,
+                          String direccion,
+                          String telefono,String ciudad, String provincia,String pais, String email, String password){
+        Usuario user = new Usuario();
         try{
+            user.setNombre(nombre);
+            user.setApellido(apellido);
+            user.setDireccion(direccion);
+            user.setTelefono(telefono);
+            user.setCiudad(ciudad);
+            user.setProvincia(provincia);
+            user.setPais(pais);
+            user.setEmail(email);
+            user.setPassword(password);
             userdao.save(user);
         }
         catch (Exception e){
 
         }
     }
+
+    public Usuario getUserforLogin(String email, String password){
+        return userdao.getUsuario(email,password);
+    }
+
+
 }

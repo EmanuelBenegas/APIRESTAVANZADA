@@ -20,7 +20,7 @@ public class Mensaje {
     private String mensaje;
     private String asunto;
     @ManyToMany
-    @JoinTable(name = "mensaje_usuario",
+    @JoinTable(name = "User_Mensaje",
             joinColumns = @JoinColumn(name = "id_mensaje"),
             inverseJoinColumns = @JoinColumn(name = "id_usuario", unique = false))
     private List<Usuario> recipientes;
