@@ -45,5 +45,10 @@ public class UsuarioService {
         return userdao.getUsuario(email,password);
     }
 
+    public Usuario getbyEmail(String email){
+        return userdao.getUsuariobyEmail(email);
+
+    }
+
 
 }

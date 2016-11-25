@@ -65,4 +65,15 @@ public class UsuarioDAO extends GenericDao<Usuario> {
             return null;
         }
     }
+
+    public Usuario getUsuariobyEmail(String email){
+        Session session = this.sessionFactory.openSession();
+        List<Usuario> list = session.createQuery("FROM Usuario where email = :u").setParameter("u",email).list();
+        session.close();
+        if (list.size() == 1) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
 }
