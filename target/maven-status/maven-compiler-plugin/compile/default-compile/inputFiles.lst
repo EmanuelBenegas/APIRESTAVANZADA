@@ -1,5 +1,6 @@
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\persistence\UsuarioDAO.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\entities\Mensaje.java
+D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\responses\MensajeResponse.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\responses\UserResponse.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\services\UsuarioService.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\util\HibernateUtil.java
@@ -11,9 +12,11 @@ D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\entities\Usuario
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\Application.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\Configuracion.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\conversores\MensajeConversor.java
+D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\controllers\MensajeController.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\services\MensajeService.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\persistence\GenericDao.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\controllers\Usuariocontroller.java
+D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\requests\MensajeRequest.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\controllers\Logincontroller.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\conversores\UsuarioConversor.java
 D:\IntelliJ IDEA 2016.2.5\APIRESTAVANZADA\src\main\java\Apirest\AuthFilter.java
