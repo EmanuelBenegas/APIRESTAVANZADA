@@ -38,19 +38,20 @@ public class Usuariocontroller {
                                            @RequestParam("telefono")String telefono,
                                            @RequestParam("ciudad")String ciudad,
                                            @RequestParam("provincia")String provincia,
-                                           @RequestParam("pais")String pais,@PathVariable ("email")String email,@RequestHeader("sessionid") String sessionid){
+                                           @RequestParam("pais")String pais,@PathVariable ("email")String email,@RequestHeader("mailcomprobacion")String comprobacion){
         //falta validarlo
-
-
-        try{
-            userservice.modificarUsuario(email,nombre,apellido,direccion,telefono,ciudad,provincia,pais);
-            return new ResponseEntity(HttpStatus.OK);
+        if(!email.equals(comprobacion)){
+            return  new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
-        catch (Exception e){
-            return  new ResponseEntity(HttpStatus.NO_CONTENT);
+        else {
+            try{
+                userservice.modificarUsuario(email,nombre,apellido,direccion,telefono,ciudad,provincia,pais);
+                return new ResponseEntity(HttpStatus.OK);
+            }
+            catch (Exception e){
+                return  new ResponseEntity(HttpStatus.NO_CONTENT);
+            }
         }
-
-
     }
 
     @RequestMapping(value = "/user/{email}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
