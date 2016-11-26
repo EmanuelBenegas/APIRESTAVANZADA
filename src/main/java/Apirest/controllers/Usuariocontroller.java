@@ -31,17 +31,25 @@ public class Usuariocontroller {
 
     //}
 
-    @RequestMapping(value = "/modificarusuario",method = RequestMethod.PUT,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "/user/{email}/modificarusuario",method = RequestMethod.PUT,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity modificarUsuario(@RequestParam("nombre")String nombre,
                                            @RequestParam("apellido")String apellido,
                                            @RequestParam("direccion")String direccion,
                                            @RequestParam("telefono")String telefono,
                                            @RequestParam("ciudad")String ciudad,
                                            @RequestParam("provincia")String provincia,
-                                           @RequestParam("pais")String pais){
-        //hay que buscarlo y despues comparar
+                                           @RequestParam("pais")String pais,@PathVariable ("email")String email,@RequestHeader("sessionid") String sessionid){
+        //falta validarlo
 
-        return new ResponseEntity(HttpStatus.OK);
+
+        try{
+            userservice.modificarUsuario(email,nombre,apellido,direccion,telefono,ciudad,provincia,pais);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch (Exception e){
+            return  new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+
 
     }
 

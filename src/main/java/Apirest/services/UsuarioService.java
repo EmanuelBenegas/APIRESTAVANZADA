@@ -50,5 +50,23 @@ public class UsuarioService {
 
     }
 
+    public void modificarUsuario(String email, String nombre, String apellido,String direccion,
+                                 String telefono, String ciudad, String provincia, String pais){
+        Usuario u = userdao.getUsuariobyEmail(email);
+        u.setNombre(nombre);
+        u.setApellido(apellido);
+        u.setDireccion(direccion);
+        u.setTelefono(telefono);
+        u.setCiudad(ciudad);
+        u.setProvincia(provincia);
+        u.setPais(pais);
+        try {
+            userdao.update(u);
+        }
+        catch (Exception e){
+
+        }
+    }
+
 
 }

@@ -51,8 +51,12 @@ public class UsuarioDAO extends GenericDao<Usuario> {
     }
 
     @Override
-    void update(Usuario value) {
-
+    public void update(Usuario value) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+        session.update(value);
+        t.commit();
+        session.close();
     }
 
     public Usuario getUsuario(String email, String password){

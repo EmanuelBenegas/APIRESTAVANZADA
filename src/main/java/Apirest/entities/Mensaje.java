@@ -13,7 +13,7 @@ public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuario remitente;
     private Date fecha;
@@ -22,7 +22,7 @@ public class Mensaje {
     @ManyToMany
     @JoinTable(name = "User_Mensaje",
             joinColumns = @JoinColumn(name = "id_mensaje"),
-            inverseJoinColumns = @JoinColumn(name = "id_usuario", unique = false))
+            inverseJoinColumns = @JoinColumn(name = "id_usuario"))
     private List<Usuario> recipientes;
 
     public Mensaje(){
