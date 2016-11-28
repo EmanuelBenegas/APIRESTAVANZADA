@@ -77,6 +77,50 @@ public class MensajeController {
         }
     }
 
+    @RequestMapping(value = "/user/{email}/salida", method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity getSalida(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobacion){
+        if(!email.equals(emailcomprobacion)){
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        else
+        {
+            try{
+
+                List<Mensaje> listamensajes = mensajeService.getSalida(email);
+                if(listamensajes.size()> 0){
+                    return new ResponseEntity<List<MensajeResponse>>(this.convertirlista(listamensajes),HttpStatus.OK);
+                }
+                else{
+                    return new ResponseEntity(HttpStatus.NO_CONTENT);
+                }
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
+
+    //corregir si anda correctamente
+    @RequestMapping(value = {"/user/{email}/entrada/{id}","/user/{email}/salida/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity leeruno(@RequestBody @PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
+        if(!email.equals(emailcomprobante)){
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        else {
+            try {
+                Mensaje m = mensajeService.getUno(id);
+                return new ResponseEntity<MensajeResponse>(conversormensaje.convertir(m),HttpStatus.OK);
+            }
+            catch (Exception e){
+                return new ResponseEntity<MensajeResponse>(HttpStatus.NO_CONTENT);
+            }
+        }
+
+    }
+
+
+
     public List<MensajeResponse> convertirlista(List<Mensaje> listamensajes){
         List<MensajeResponse> aux = new ArrayList<MensajeResponse>();
         for(Mensaje m : listamensajes){

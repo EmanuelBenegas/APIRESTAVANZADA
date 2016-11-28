@@ -16,6 +16,8 @@ import java.util.List;
  */
 @Repository
 public class MensajeDAO extends GenericDao<Mensaje>{
+    @Autowired
+    private UsuarioDAO userdao;
 
     public MensajeDAO(SessionFactory sessionFactory){
         super(sessionFactory);
@@ -31,8 +33,19 @@ public class MensajeDAO extends GenericDao<Mensaje>{
 
     @Override
     public Mensaje getById(int id) {
+        Session session = null;
+        Mensaje m = null;
+        try{
+            session = this.sessionFactory.openSession();
+            m = (Mensaje) session.createSQLQuery("from Mensaje where id = :u").addEntity(Mensaje.class).setParameter("u",id);
+        }
+        catch (Exception e){
 
-        return null;
+        }
+        finally {
+            session.close();
+            return m;
+        }
     }
 
     @Override
@@ -57,6 +70,22 @@ public class MensajeDAO extends GenericDao<Mensaje>{
                     "INNER JOIN mensajes m on m.id = um.id_mensaje where u.email = :comprobante").addEntity(Mensaje.class).setParameter("comprobante",email);
             List<Mensaje> listaentrada = query.list();
             return listaentrada;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+    }
+
+    public List<Mensaje> getSalida(String email) throws Exception {
+        Session session = null;
+        try {
+            session = this.sessionFactory.openSession();
+            Usuario u = userdao.getUsuariobyEmail(email);
+            List<Mensaje> listasalida = session.createSQLQuery("Select * from Mensajes where id_usuario = :iduser").addEntity(Mensaje.class).setParameter("iduser",u.getId()).list();
+            return listasalida;
         }
         catch (Exception e){
             throw e;

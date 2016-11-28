@@ -50,5 +50,22 @@ public class MensajeService {
         }
     }
 
+    public List<Mensaje> getSalida(String email){
+        List<Mensaje> listasalida = null;
+        try{
+            listasalida = mensdao.getSalida(email);
+        }
+        catch (Exception e){
+
+        }
+        finally {
+            return listasalida;
+        }
+    }
+
+    public Mensaje getUno(int id){
+        return mensdao.getById(id);
+    }
+
 
 }
