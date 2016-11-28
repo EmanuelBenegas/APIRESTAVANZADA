@@ -14,6 +14,7 @@ import java.util.List;
  */
 @Service
 public class MensajeService {
+    @Autowired
     MensajeDAO mensdao;
 
     @Autowired
@@ -35,4 +36,19 @@ public class MensajeService {
         mensaje.setRecipientes(listausuarios);
         mensdao.save(mensaje);
     }
+
+    public List<Mensaje> getEntrada(String email){
+        List<Mensaje> entrada=null;
+        try{
+            entrada=mensdao.getEntrada(email);
+        }
+        catch (Exception e){
+
+        }
+        finally {
+            return entrada;
+        }
+    }
+
+
 }
