@@ -121,7 +121,7 @@ public class MensajeController {
     }*/
     //para leer mensaje de salida
     @RequestMapping(value = "/user/{email}/salida/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity leerUnoEntrada(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
+    public ResponseEntity leerUnoSalida(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
         if(!email.equals(emailcomprobante)){
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
@@ -137,6 +137,21 @@ public class MensajeController {
         }
     }
 
+    @RequestMapping(value = "/user/{email}/entrada/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity leerUnoEntrada(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
+        if(!email.equals(emailcomprobante)){
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        else {
+            try{
+                Mensaje m = mensajeService.getUnoEntrada(email,id);
+                return new ResponseEntity<MensajeResponse>(conversormensaje.convertir(m),HttpStatus.OK);
+            }
+            catch (Exception e){
+                return new ResponseEntity<MensajeResponse>(HttpStatus.NO_CONTENT);
+            }
+        }
+    }
 
     public List<MensajeResponse> convertirlista(List<Mensaje> listamensajes){
         List<MensajeResponse> aux = new ArrayList<MensajeResponse>();

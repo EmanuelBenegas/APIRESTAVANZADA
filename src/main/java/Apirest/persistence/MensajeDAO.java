@@ -116,4 +116,25 @@ public class MensajeDAO extends GenericDao<Mensaje>{
             session.close();
         }
     }
+
+    public Mensaje getUnoEntrada(String email, int id_mensaje) throws Exception{
+        Session session = null;
+        try{
+            session = this.sessionFactory.openSession();
+            Query query = session.createSQLQuery("SELECT m.* from usuarios u INNER JOIN user_mensaje um on u.id = um.id_usuario " +
+                    "INNER JOIN mensajes m on m.id = um.id_mensaje where u.email = :comprobante and m.id = :idmens").addEntity(Mensaje.class).setParameter("comprobante",email).setParameter("idmens",id_mensaje);
+            List<Mensaje> lista = query.list();
+            if (lista.size() == 1) {
+                return lista.get(0);
+            } else {
+                return null;
+            }
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+    }
 }

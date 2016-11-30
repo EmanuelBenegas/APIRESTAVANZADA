@@ -81,5 +81,18 @@ public class MensajeService {
         }
     }
 
+    public Mensaje getUnoEntrada(String email, int idmensaje){
+        Mensaje m = null;
+        try {
+            m = mensdao.getUnoEntrada(email,idmensaje);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            return m;
+        }
+    }
+
 
 }
