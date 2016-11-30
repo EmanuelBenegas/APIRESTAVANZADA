@@ -102,8 +102,8 @@ public class MensajeController {
     }
 
     //corregir si anda correctamente
-    @RequestMapping(value = {"/user/{email}/entrada/{id}","/user/{email}/salida/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity leeruno(@RequestBody @PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
+    /*@RequestMapping(value = {"/user/{email}/entrada/{id}","/user/{email}/salida/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity leeruno(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
         if(!email.equals(emailcomprobante)){
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
@@ -115,10 +115,27 @@ public class MensajeController {
             catch (Exception e){
                 return new ResponseEntity<MensajeResponse>(HttpStatus.NO_CONTENT);
             }
+
         }
 
+    }*/
+    //para leer mensaje de salida
+    @RequestMapping(value = "/user/{email}/salida/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity leerUnoEntrada(@PathVariable("email")String email,@RequestHeader("emailcomprobante")String emailcomprobante,@PathVariable("id")Integer id){
+        if(!email.equals(emailcomprobante)){
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        else{
+            try{
+                Usuario u = userservice.getbyEmail(email);
+                Mensaje m = mensajeService.getUnoSalida(u.getId(),id);
+                return new ResponseEntity<MensajeResponse>(conversormensaje.convertir(m),HttpStatus.OK);
+            }
+            catch (Exception e){
+                return new ResponseEntity<MensajeResponse>(HttpStatus.NO_CONTENT);
+            }
+        }
     }
-
 
 
     public List<MensajeResponse> convertirlista(List<Mensaje> listamensajes){

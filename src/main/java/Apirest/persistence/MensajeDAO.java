@@ -37,7 +37,9 @@ public class MensajeDAO extends GenericDao<Mensaje>{
         Mensaje m = null;
         try{
             session = this.sessionFactory.openSession();
-            m = (Mensaje) session.createSQLQuery("from Mensaje where id = :u").addEntity(Mensaje.class).setParameter("u",id);
+            //m = (Mensaje) session.createQuery("from Mensaje where id = :u").setParameter("u",id);
+            m = (Mensaje)session.get(Mensaje.class,id);
+
         }
         catch (Exception e){
 
@@ -86,6 +88,26 @@ public class MensajeDAO extends GenericDao<Mensaje>{
             Usuario u = userdao.getUsuariobyEmail(email);
             List<Mensaje> listasalida = session.createSQLQuery("Select * from Mensajes where id_usuario = :iduser").addEntity(Mensaje.class).setParameter("iduser",u.getId()).list();
             return listasalida;
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+    }
+
+    public Mensaje getUnoSalida(int id_user, int id_mensaje) throws Exception {
+        Session session = null;
+        try {
+            session = this.sessionFactory.openSession();
+            Query query = session.createSQLQuery("Select * from Mensajes where id = :idmensaje and id_usuario = :iduser").addEntity(Mensaje.class).setParameter("idmensaje",id_mensaje).setParameter("iduser",id_user);
+            List<Mensaje> lista = query.list();
+            if (lista.size() == 1) {
+                return lista.get(0);
+            } else {
+                return null;
+            }
         }
         catch (Exception e){
             throw e;

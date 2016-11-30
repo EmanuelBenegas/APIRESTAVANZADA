@@ -67,5 +67,19 @@ public class MensajeService {
         return mensdao.getById(id);
     }
 
+    public Mensaje getUnoSalida(int id_user, int idmensaje){
+        Mensaje m =null;
+        try {
+            m = mensdao.getUnoSalida(id_user,idmensaje);
+            return m;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            return m;
+        }
+    }
+
 
 }
